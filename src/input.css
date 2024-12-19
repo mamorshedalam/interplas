@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* ANIMATION */
+  .x-animation-md {
+    @apply transition-all duration-300 ease-out;
+  }
+}
+
+@layer base {
+  /* OFFLINE FONT FAMILY */
+  @font-face {
+    font-family: "Helvetica-Neue";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/assets/fonts/helveticaneue.woff) format("woff");
+  }
+  @font-face {
+    font-family: "Helvetica-Neue";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(/assets/fonts/helveticaneue-medium.woff) format("woff");
+  }
+  @font-face {
+    font-family: "Helvetica-Neue";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/assets/fonts/helveticaneue-bold.woff) format("woff");
+  }
+  /* CUSTOM CSS */
+
+  section,
+  header,
+  footer {
+    @apply relative;
+  }
+
+  a,
+  button {
+    @apply inline-block cursor-pointer;
+  }
+
+  img {
+    @apply w-fit align-middle;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply outline-none bg-transparent focus:outline-none;
+  }
+}
