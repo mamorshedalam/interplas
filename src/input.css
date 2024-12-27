@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+  .x-container {
+    @apply max-w-[1320px] w-full px-10 pt-6 mx-auto;
+  }
+
   /* ANIMATION */
-  .x-animation-md {
+  .x-animation {
     @apply transition-all duration-300 ease-out;
   }
 }
@@ -12,28 +16,27 @@
 @layer base {
   /* OFFLINE FONT FAMILY */
   @font-face {
-    font-family: "Helvetica-Neue";
+    font-family: "Helvetica";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(/assets/fonts/helveticaneue.woff) format("woff");
+    src: url(/assets/fonts/Helvetica.woff) format("woff");
   }
   @font-face {
-    font-family: "Helvetica-Neue";
+    font-family: "Helvetica";
     font-style: normal;
-    font-weight: 500;
+    font-weight: 300;
     font-display: swap;
-    src: url(/assets/fonts/helveticaneue-medium.woff) format("woff");
+    src: url(/assets/fonts/Helvetica-Light.woff) format("woff");
   }
   @font-face {
-    font-family: "Helvetica-Neue";
+    font-family: "Helvetica";
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url(/assets/fonts/helveticaneue-bold.woff) format("woff");
+    src: url(/assets/fonts/Helvetica-Bold.woff) format("woff");
   }
   /* CUSTOM CSS */
-
   section,
   header,
   footer {
@@ -46,12 +49,20 @@
   }
 
   img {
-    @apply w-fit align-middle;
+    @apply w-full align-middle;
   }
 
   input,
   select,
   textarea {
     @apply outline-none bg-transparent focus:outline-none;
+  }
+}
+@layer utilities {
+  .sl-line-text-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }

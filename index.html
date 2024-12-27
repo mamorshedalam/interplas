@@ -1,15 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Interplas</title>
+     <!-- CUSTOM CSS -->
+     <style>
+          /* it need to work x-clock hidden */
+          [x-cloak] {
+               display: none !important;
+          }
+
+          /* SWIPER JS */
+          .swiper-horizontal>.swiper-pagination-bullets,
+          .swiper-pagination-bullets.swiper-pagination-horizontal,
+          .swiper-pagination-custom,
+          .swiper-pagination-fraction {
+               left: auto !important;
+               right: 16px !important;
+               width: fit-content !important;
+          }
+
+          .swiper-pagination-bullet {
+               width: 24px !important;
+               height: 24px !important;
+               background: #fff !important;
+               opacity: 100 !important;
+          }
+
+          .swiper-pagination-bullet-active {
+               background: #374151 !important;
+          }
+     </style>
+     <!-- FONT AWESOME -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+     <!-- SWIPER CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
      <!-- TAILWIND CSS -->
      <link href="./assets/css/output.css" rel="stylesheet">
      <!-- ALPINE JS -->
      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body>
-     
+
+<body class="text-gray-800 bg-gray-100">
+     <!-- HEADER -->
+     <header>
+          <div class="bg-gray-100 text-xs py-2.5">
+               <div class="x-container pt-0">
+                    <div class="flex flex-wrap items-center justify-between">
+                         <div class="flex items-center gap-2">
+                              <span>
+                                   <svg width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.875 0H0V14H13.875V0Z" fill="#00B67A" />
+                                        <path d="M28.9062 0H15.0312V14H28.9062V0Z" fill="#00B67A" />
+                                        <path d="M43.9375 0H30.0625V14H43.9375V0Z" fill="#00B67A" />
+                                        <path d="M58.9688 0H45.0938V14H58.9688V0Z" fill="#00B67A" />
+                                        <path d="M74 0H60.125V14H74V0Z" fill="#00B67A" />
+                                        <path d="M6.9375 9.43542L9.04766 8.89583L9.9293 11.6375L6.9375 9.43542ZM11.7937 5.89167H8.0793L6.9375 2.3625L5.7957 5.89167H2.08125L5.0875 8.07917L3.9457 11.6083L6.95195 9.42083L8.80195 8.07917L11.7937 5.89167Z"
+                                             fill="#F3F4F6" />
+                                        <path d="M21.9688 9.43542L24.0789 8.89583L24.9605 11.6375L21.9688 9.43542ZM26.825 5.89167H23.1105L21.9688 2.3625L20.827 5.89167H17.1125L20.1188 8.07917L18.977 11.6083L21.9832 9.42083L23.8332 8.07917L26.825 5.89167Z"
+                                             fill="#F3F4F6" />
+                                        <path d="M37 9.43542L39.1102 8.89583L39.9918 11.6375L37 9.43542ZM41.8563 5.89167H38.1418L37 2.3625L35.8582 5.89167H32.1437L35.15 8.07917L34.0082 11.6083L37.0145 9.42083L38.8645 8.07917L41.8563 5.89167Z"
+                                             fill="#F3F4F6" />
+                                        <path d="M52.0312 9.43542L54.1414 8.89583L55.023 11.6375L52.0312 9.43542ZM56.8875 5.89167H53.173L52.0312 2.3625L50.8895 5.89167H47.175L50.1813 8.07917L49.0395 11.6083L52.0457 9.42083L53.8957 8.07917L56.8875 5.89167Z"
+                                             fill="#F3F4F6" />
+                                        <path d="M67.0625 9.43542L69.1727 8.89583L70.0543 11.6375L67.0625 9.43542ZM71.9187 5.89167H68.2043L67.0625 2.3625L65.9207 5.89167H62.2062L65.2125 8.07917L64.0707 11.6083L67.077 9.42083L68.927 8.07917L71.9187 5.89167Z"
+                                             fill="#F3F4F6" />
+                                   </svg>
+                              </span>
+                              <span>4.9 out of 5 based on 2,000+ reviews</span>
+                              <span>
+                                   <svg width="49" height="12" viewBox="0 0 49 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.8386 4.25306V5.17613H15.8878V10.3652H14.8151V5.17613H12.8729V4.25306H17.8386ZM18.5437 5.93961V6.79367H18.561C18.5913 6.6729 18.6475 6.55643 18.7297 6.44428C18.8119 6.33213 18.9114 6.2243 19.0282 6.13372C19.145 6.03882 19.2747 5.96549 19.4175 5.9051C19.5602 5.84903 19.7073 5.81884 19.8543 5.81884C19.9668 5.81884 20.049 5.82315 20.0923 5.82746C20.1355 5.83178 20.1788 5.8404 20.2263 5.84472V6.78505C20.1571 6.77211 20.0879 6.76348 20.0144 6.75485C19.9409 6.74623 19.8716 6.74191 19.8024 6.74191C19.6381 6.74191 19.4823 6.77642 19.3353 6.84112C19.1882 6.90582 19.0628 7.00503 18.9546 7.13012C18.8465 7.25953 18.76 7.41481 18.6951 7.6046C18.6302 7.79439 18.5999 8.01006 18.5999 8.25593V10.3609H17.6224V5.93961H18.5437ZM24.7206 10.3652H23.7603V9.74838H23.743C23.6219 9.97268 23.4446 10.1495 23.2067 10.2832C22.9688 10.417 22.7265 10.486 22.48 10.486C21.896 10.486 21.4721 10.3436 21.2126 10.0546C20.953 9.76564 20.8233 9.32998 20.8233 8.74766V5.93961H21.8008V8.65277C21.8008 9.04098 21.8744 9.31704 22.0258 9.47663C22.1728 9.63623 22.3848 9.71819 22.653 9.71819C22.8606 9.71819 23.0293 9.68799 23.1677 9.62329C23.3061 9.55859 23.4186 9.47663 23.5008 9.3688C23.5873 9.26528 23.6479 9.13587 23.6868 8.98922C23.7257 8.84256 23.743 8.68296 23.743 8.51042V5.94393H24.7206V10.3652ZM26.3859 8.94608C26.4162 9.23077 26.5244 9.42919 26.7104 9.54565C26.9007 9.6578 27.1256 9.71819 27.3895 9.71819C27.4803 9.71819 27.5841 9.70956 27.7009 9.69662C27.8177 9.68368 27.9302 9.65349 28.0297 9.61467C28.1335 9.57584 28.2157 9.51546 28.2849 9.43781C28.3498 9.36017 28.38 9.26096 28.3757 9.13587C28.3714 9.01078 28.3238 8.90726 28.2373 8.82962C28.1508 8.74766 28.0426 8.68727 27.9085 8.63551C27.7745 8.58807 27.6231 8.54493 27.45 8.51042C27.277 8.47592 27.104 8.43709 26.9266 8.39827C26.745 8.35945 26.5676 8.30769 26.3989 8.25162C26.2302 8.19554 26.0788 8.1179 25.9447 8.01869C25.8106 7.9238 25.7025 7.79871 25.6246 7.64774C25.5425 7.49677 25.5035 7.31129 25.5035 7.08699C25.5035 6.84543 25.5641 6.64702 25.6809 6.48311C25.7977 6.31919 25.9491 6.18979 26.1264 6.09058C26.3081 5.99137 26.5071 5.92236 26.7277 5.87922C26.9483 5.8404 27.1602 5.81884 27.3592 5.81884C27.5885 5.81884 27.8091 5.84472 28.0167 5.89216C28.2243 5.93961 28.4146 6.01725 28.5833 6.1294C28.752 6.23724 28.8904 6.37958 29.0029 6.55212C29.1154 6.72466 29.1846 6.93602 29.2149 7.18188H28.194C28.1465 6.94896 28.0426 6.78936 27.8739 6.71172C27.7052 6.62976 27.5106 6.59094 27.2943 6.59094C27.2251 6.59094 27.1429 6.59525 27.0478 6.6082C26.9526 6.62114 26.8661 6.6427 26.7796 6.6729C26.6974 6.70309 26.6282 6.75054 26.5676 6.81093C26.5114 6.87132 26.4811 6.94896 26.4811 7.04817C26.4811 7.16894 26.5244 7.26384 26.6066 7.33717C26.6887 7.4105 26.7969 7.47088 26.931 7.52264C27.0651 7.57009 27.2165 7.61323 27.3895 7.64774C27.5625 7.68224 27.7399 7.72106 27.9215 7.75988C28.0989 7.79871 28.2719 7.85047 28.4449 7.90654C28.6179 7.96262 28.7693 8.04026 28.9034 8.13947C29.0375 8.23868 29.1457 8.35945 29.2278 8.50611C29.31 8.65277 29.3533 8.83824 29.3533 9.05392C29.3533 9.31704 29.2927 9.53702 29.1716 9.7225C29.0505 9.90367 28.8948 10.0546 28.7044 10.1668C28.5141 10.2789 28.2978 10.3652 28.0643 10.417C27.8307 10.4687 27.5971 10.4946 27.3679 10.4946C27.0867 10.4946 26.8272 10.4644 26.5892 10.3997C26.3513 10.335 26.1437 10.2401 25.9707 10.115C25.7977 9.98562 25.6593 9.82602 25.5598 9.63623C25.4603 9.44644 25.4084 9.21783 25.3997 8.95471H26.3859V8.94608ZM29.6128 5.93961H30.3525V4.61107H31.3301V5.93961H32.2125V6.66858H31.3301V9.03235C31.3301 9.13587 31.3344 9.22214 31.343 9.29978C31.3517 9.37311 31.3733 9.43781 31.4036 9.48958C31.4339 9.54134 31.4815 9.58016 31.5463 9.60604C31.6112 9.63192 31.6934 9.64486 31.8059 9.64486C31.8751 9.64486 31.9443 9.64486 32.0135 9.64055C32.0827 9.63623 32.1519 9.62761 32.2211 9.61035V10.3652C32.113 10.3781 32.0049 10.3868 31.9054 10.3997C31.8016 10.4127 31.6977 10.417 31.5896 10.417C31.3301 10.417 31.1224 10.3911 30.9667 10.3436C30.811 10.2962 30.6856 10.2229 30.599 10.128C30.5082 10.0331 30.452 9.91661 30.4174 9.77426C30.3871 9.63192 30.3655 9.46801 30.3611 9.28684V6.67721H29.6215V5.93961H29.6128ZM32.9046 5.93961H33.8302V6.53918H33.8475C33.986 6.28037 34.1763 6.09921 34.4228 5.98706C34.6694 5.87491 34.9333 5.81884 35.2231 5.81884C35.5734 5.81884 35.8762 5.87922 36.1358 6.00431C36.3953 6.12509 36.6116 6.29331 36.7846 6.50899C36.9576 6.72466 37.0831 6.97484 37.1696 7.25953C37.2561 7.54421 37.2993 7.85047 37.2993 8.17397C37.2993 8.4716 37.2604 8.7606 37.1826 9.03666C37.1047 9.31704 36.9879 9.5629 36.8322 9.77858C36.6765 9.99425 36.4775 10.1625 36.2353 10.2919C35.993 10.4213 35.7119 10.486 35.3831 10.486C35.2404 10.486 35.0976 10.473 34.9549 10.4472C34.8121 10.4213 34.6737 10.3781 34.544 10.3221C34.4142 10.266 34.2888 10.1927 34.1806 10.1021C34.0682 10.0115 33.9773 9.90798 33.8995 9.79152H33.8822V12H32.9046V5.93961ZM36.3218 8.15672C36.3218 7.9583 36.2958 7.7642 36.2439 7.57441C36.192 7.38461 36.1141 7.2207 36.0103 7.07405C35.9065 6.92739 35.7767 6.81093 35.6254 6.72466C35.4696 6.63839 35.2923 6.59094 35.0933 6.59094C34.6824 6.59094 34.3709 6.73328 34.1633 7.01797C33.9557 7.30266 33.8519 7.68224 33.8519 8.15672C33.8519 8.38102 33.8778 8.58807 33.9341 8.77786C33.9903 8.96765 34.0682 9.13156 34.1806 9.26959C34.2888 9.40762 34.4185 9.51546 34.5699 9.5931C34.7213 9.67505 34.8987 9.71387 35.0976 9.71387C35.3226 9.71387 35.5086 9.66643 35.6643 9.57584C35.82 9.48526 35.9454 9.36448 36.0449 9.22214C36.1444 9.07548 36.218 8.91157 36.2612 8.7261C36.3001 8.54062 36.3218 8.35083 36.3218 8.15672ZM38.0477 4.25306H39.0252V5.17613H38.0477V4.25306ZM38.0477 5.93961H39.0252V10.3652H38.0477V5.93961ZM39.899 4.25306H40.8766V10.3652H39.899V4.25306ZM43.8742 10.486C43.5195 10.486 43.2037 10.4256 42.9269 10.3091C42.6501 10.1927 42.4165 10.0288 42.2218 9.82602C42.0315 9.61898 41.8845 9.37311 41.785 9.08842C41.6855 8.80374 41.6336 8.48886 41.6336 8.14809C41.6336 7.81165 41.6855 7.50108 41.785 7.21639C41.8845 6.9317 42.0315 6.68584 42.2218 6.47879C42.4122 6.27175 42.6501 6.11215 42.9269 5.99569C43.2037 5.87922 43.5195 5.81884 43.8742 5.81884C44.2289 5.81884 44.5447 5.87922 44.8215 5.99569C45.0983 6.11215 45.3319 6.27606 45.5266 6.47879C45.7169 6.68584 45.864 6.9317 45.9635 7.21639C46.0629 7.50108 46.1149 7.81165 46.1149 8.14809C46.1149 8.48886 46.0629 8.80374 45.9635 9.08842C45.864 9.37311 45.7169 9.61898 45.5266 9.82602C45.3363 10.0331 45.0983 10.1927 44.8215 10.3091C44.5447 10.4256 44.2289 10.486 43.8742 10.486ZM43.8742 9.71387C44.0905 9.71387 44.2808 9.66643 44.4409 9.57584C44.6009 9.48526 44.7307 9.36449 44.8345 9.21783C44.9383 9.07117 45.0118 8.90295 45.0637 8.71747C45.1113 8.53199 45.1373 8.3422 45.1373 8.14809C45.1373 7.9583 45.1113 7.77283 45.0637 7.58303C45.0162 7.39324 44.9383 7.22933 44.8345 7.08267C44.7307 6.93602 44.6009 6.81955 44.4409 6.72897C44.2808 6.63839 44.0905 6.59094 43.8742 6.59094C43.6579 6.59094 43.4676 6.63839 43.3076 6.72897C43.1475 6.81955 43.0177 6.94033 42.9139 7.08267C42.8101 7.22933 42.7366 7.39324 42.6847 7.58303C42.6371 7.77283 42.6111 7.9583 42.6111 8.14809C42.6111 8.3422 42.6371 8.53199 42.6847 8.71747C42.7323 8.90295 42.8101 9.07117 42.9139 9.21783C43.0177 9.36449 43.1475 9.48526 43.3076 9.57584C43.4676 9.67074 43.6579 9.71387 43.8742 9.71387ZM46.4003 5.93961H47.14V4.61107H48.1176V5.93961H49V6.66858H48.1176V9.03235C48.1176 9.13587 48.1219 9.22214 48.1306 9.29978C48.1392 9.37311 48.1608 9.43781 48.1911 9.48958C48.2214 9.54134 48.269 9.58016 48.3339 9.60604C48.3988 9.63192 48.4809 9.64486 48.5934 9.64486C48.6626 9.64486 48.7318 9.64486 48.801 9.64055C48.8702 9.63623 48.9394 9.62761 49.0087 9.61035V10.3652C48.9005 10.3781 48.7924 10.3868 48.6929 10.3997C48.5891 10.4127 48.4853 10.417 48.3771 10.417C48.1176 10.417 47.91 10.3911 47.7542 10.3436C47.5985 10.2962 47.4731 10.2229 47.3866 10.128C47.2957 10.0331 47.2395 9.91661 47.2049 9.77426C47.1746 9.63192 47.153 9.46801 47.1487 9.28684V6.67721H46.409V5.93961H46.4003Z"
+                                             fill="#1F2937" />
+                                        <path d="M11.7353 4.25306H7.25397L5.86979 0L4.48129 4.25306L0 4.24874L3.62915 6.87994L2.24064 11.1287L5.86979 8.5018L9.49461 11.1287L8.11043 6.87994L11.7353 4.25306Z"
+                                             fill="#00B67A" />
+                                        <path d="M8.42188 7.84184L8.11043 6.87994L5.86979 8.5018L8.42188 7.84184Z" fill="#005128" />
+                                   </svg>
+                              </span>
+                         </div>
+                         <div class="flex items-center gap-4">
+                              <a href="">
+                                   <i class="fa-solid fa-location-pin"></i>
+                                   My Ship-to ZIP Code
+                              </a>
+                              <a href="">
+                                   <i class="fa-solid fa-clock"></i>
+                                   Mon-Fri: 8am-5pm EST
+                              </a>
+                              <a href="">
+                                   <i class="fa-solid fa-phone"></i>
+                                   1-800-820-4722
+                              </a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="bg-gray-700 text-white py-3 drop-shadow-md">
+               <div class="x-container pt-0">
+                    <div class="flex items-center flex-wrap gap-6">
+                         <a href="/"><img src="assets/img/logo.png" alt="logo"></a>
+                         <div class="flex items-center gap-2">
+                              <div class="relative" x-data="{active: false, selected: 'Categories'}">
+                                   <button @click="active = !active" class="flex items-center"><span x-text="selected" class="block w-24 sl-line-text-1"></span> <i
+                                             class="fa-solid fa-caret-down"></i></button>
+                                   <ul x-cloak x-transition x-show="active" class="absolute top-full left-0 w-60 mt-5 p-2 text-gray-800 text-sm drop-shadow-xl bg-white">
+                                        <li @click="active= false; selected = 'Custom Printed'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Custom Printed</li>
+                                        <li @click="active= false; selected = 'Bags & Liners'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Bags & Liners</li>
+                                        <li @click="active= false; selected = 'Tubing & Film'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Tubing & Film</li>
+                                        <li @click="active= false; selected = 'Shipping Supplies'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Shipping Supplies</li>
+                                        <li @click="active= false; selected = 'Sustainable Packaging'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Sustainable Packaging</li>
+                                   </ul>
+                              </div>
+                              <div class="relative" x-data="{active: false, selected: 'Industries'}">
+                                   <button @click="active = !active" class="flex items-center"><span x-text="selected" class="block w-24 sl-line-text-1"></span> <i
+                                             class="fa-solid fa-caret-down"></i></button>
+                                   <ul x-cloak x-transition x-show="active" class="absolute top-full left-0 w-60 mt-5 p-2 text-gray-800 text-sm drop-shadow-xl bg-white">
+                                        <li @click="active= false; selected = 'Restaurant & Food'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Restaurant & Food</li>
+                                        <li @click="active= false; selected = 'Healthcare Packaging'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Healthcare Packaging</li>
+                                        <li @click="active= false; selected = 'Retail Packaging'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Retail Packaging</li>
+                                        <li @click="active= false; selected = 'Cannabis Packaging'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Cannabis Packaging</li>
+                                        <li @click="active= false; selected = 'Ice Packaging'" class="cursor-pointer px-2.5 py-1 hover:bg-gray-700/5">Ice Packaging</li>
+                                   </ul>
+                              </div>
+                         </div>
+                         <div class="relative basis-0 flex-grow">
+                              <label for="" class="absolute top-1/2 -translate-y-1/2 left-2 text-gray-400"><i class="fa-solid fa-magnifying-glass"></i></label>
+                              <input type="text" placeholder="Search 9,000+ packaging products..." class="w-full pl-8 bg-white py-2 rounded-md">
+                         </div>
+                         <div class="flex items-center gap-4 font-bold">
+                              <a href="" class="hover:text-gray-200 x-animation"><i class="fa-solid fa-bell"></i> Support</a>
+                              <a href="" class="hover:text-gray-200 x-animation"><i class="fa-solid fa-circle-user"></i> Sign in</a>
+                              <a href="" class="hover:text-gray-200 x-animation"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </header>
+     <!-- HERO -->
+     <section class="x-container">
+          <div class="swiper heroSlider">
+               <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="assets/img/hero-bg.jpg" alt="Hero Image" class="rounded-xl"></div>
+                    <div class="swiper-slide"><img src="assets/img/hero-bg.jpg" alt="Hero Image" class="rounded-xl"></div>
+                    <div class="swiper-slide"><img src="assets/img/hero-bg.jpg" alt="Hero Image" class="rounded-xl"></div>
+               </div>
+               <div class="swiper-pagination"></div>
+          </div>
+          <button class="heroSlider-next absolute top-1/2 -translate-y-1/2 right-3 w-12 h-12 rounded-full drop-shadow-md bg-white z-[999]"><i class="fa-solid fa-chevron-right"></i></button>
+     </section>
+     <!-- CATEGORY -->
+     <section class="x-container">
+          <h1 class="font-bold text-2xl px-2">Shop by Category <a href="" class="text-base underline hover:opacity-85 x-animation">View all</a></h1>
+          <div class="flex flex-wrap justify-center mt-4">
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Custom Printed Packaging</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Bags & Liners</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Tubing & Film</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Shipping Supplies</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Sustainable Packaging</h3>
+                    </a>
+               </div>
+          </div>
+     </section>
+     <!-- INDUSTRY -->
+     <section class="x-container">
+          <h1 class="font-bold text-2xl px-2">Shop by Industry <a href="" class="text-base underline hover:opacity-85 x-animation">View all</a></h1>
+          <div class="flex flex-wrap justify-center mt-4">
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Restaurant & Food</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Healthcare Packaging</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Retail Packaging</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Cannabis Packaging</h3>
+                    </a>
+               </div>
+               <div class="w-1/5 px-2">
+                    <a href="" class="p-4 bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/item.jpg" alt="item image" class="rounded-lg">
+                         <h3 class="text-center font-bold mt-3">Ice Packaging</h3>
+                    </a>
+               </div>
+          </div>
+     </section>
+     <!-- CARD -->
+     <section class="x-container">
+          <div class="flex flex-wrap">
+               <div class="w-1/2 px-2"><img src="assets/img/card.jpg" alt="Card Image" class="rounded-xl"></div>
+               <div class="w-1/2 px-2"><img src="assets/img/card.jpg" alt="Card Image" class="rounded-xl"></div>
+          </div>
+     </section>
+     <!-- PARTNER -->
+     <section class="x-container">
+          <h1 class="font-bold text-2xl px-2">Trusted by Global Leaders - Since 1964</h1>
+          <div class="relative mt-4">
+               <div class="swiper partnerSlider">
+                    <div class="swiper-wrapper">
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-1.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-2.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-3.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-4.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-1.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-2.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-3.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/partner/partner-4.png" alt="Partner Image" class="w-28"></div>
+                         </div>
+                    </div>
+               </div>
+               <button class="partnerSlider-next absolute top-1/2 -translate-y-1/2 -right-5 w-12 h-12 rounded-full drop-shadow-md bg-white z-[999]"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+     </section>
+     <!-- BANNER -->
+     <section class="x-container">
+          <h1 class="font-bold text-2xl px-2">Fast Same-Day Shipping on 9,000+ Items <a href="" class="text-base underline hover:opacity-85 x-animation">Learn more</a></h1>
+          <img src="assets/img/banner.jpg" alt="Banner" class="mt-4">
+     </section>
+     <!-- AWARD -->
+     <section class="x-container">
+          <h1 class="font-bold text-2xl px-2">Awards & Certifications</h1>
+          <div class="relative">
+               <div class="swiper partnerSlider mt-4">
+                    <div class="swiper-wrapper">
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-1.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-2.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-3.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-4.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-1.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-2.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-3.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                         <div class="swiper-slide">
+                              <div class="bg-white rounded-xl flex items-center justify-center h-32"><img src="assets/img/award/award-4.png" alt="Partner Image" class="w-36"></div>
+                         </div>
+                    </div>
+               </div>
+               <button class="partnerSlider-next absolute top-1/2 -translate-y-1/2 -right-5 w-12 h-12 rounded-full drop-shadow-md bg-white z-[999]"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+     </section>
+     <!-- ABOUT -->
+     <section class="x-container">
+          <h1 class="font-bold text-2xl px-2">The Flexible Packaging Experts™ <a href="" class="text-base underline hover:opacity-85 x-animation">About us</a></h1>
+          <div class="flex flex-wrap justify-center mt-4">
+               <div class="w-1/3 px-2 mb-4">
+                    <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/about/about-1.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                         <h3 class="text-center font-bold px-2 py-5">Manufacture of Flexible Packaging</h3>
+                    </a>
+               </div>
+               <div class="w-1/3 px-2 mb-4">
+                    <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/about/about-2.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                         <h3 class="text-center font-bold px-2 py-5">Custom Packaging Capabilities</h3>
+                    </a>
+               </div>
+               <div class="w-1/3 px-2 mb-4">
+                    <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/about/about-3.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                         <h3 class="text-center font-bold px-2 py-5">9,000+ Items In-Stock</h3>
+                    </a>
+               </div>
+               <div class="w-1/3 px-2 mb-4">
+                    <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/about/about-4.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                         <h3 class="text-center font-bold px-2 py-5">2 Hours of Free Art Time</h3>
+                    </a>
+               </div>
+               <div class="w-1/3 px-2 mb-4">
+                    <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/about/about-5.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                         <h3 class="text-center font-bold px-2 py-5">Lowest Price Guarantee</h3>
+                    </a>
+               </div>
+               <div class="w-1/3 px-2 mb-4">
+                    <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                         <img src="assets/img/about/about-6.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                         <h3 class="text-center font-bold px-2 py-5">100% Satisfaction Guarantee</h3>
+                    </a>
+               </div>
+          </div>
+     </section>
+     <!-- BLOG -->
+     <section class="x-container">
+          <h1 class="font-bold text-2xl px-2">News From Our Blog <a href="" class="text-base underline hover:opacity-85 x-animation">More news</a></h1>
+          <div class="relative mt-4">
+               <div class="swiper blogSlider">
+                    <div class="swiper-wrapper">
+                         <div class="swiper-slide">
+                              <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                                   <img src="assets/img/blog.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                                   <div class="p-5">
+                                        <p class="text-sm">Sept 7, 2024 - By Ian M</p>
+                                        <h3 class="font-bold">Manufacture of Flexible Packaging</h3>
+                                   </div>
+                              </a>
+                         </div>
+                         <div class="swiper-slide">
+                              <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                                   <img src="assets/img/blog.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                                   <div class="p-5">
+                                        <p class="text-sm">Sept 7, 2024 - By Ian M</p>
+                                        <h3 class="font-bold">Manufacture of Flexible Packaging</h3>
+                                   </div>
+                              </a>
+                         </div>
+                         <div class="swiper-slide">
+                              <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                                   <img src="assets/img/blog.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                                   <div class="p-5">
+                                        <p class="text-sm">Sept 7, 2024 - By Ian M</p>
+                                        <h3 class="font-bold">Manufacture of Flexible Packaging</h3>
+                                   </div>
+                              </a>
+                         </div>
+                         <div class="swiper-slide">
+                              <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                                   <img src="assets/img/blog.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                                   <div class="p-5">
+                                        <p class="text-sm">Sept 7, 2024 - By Ian M</p>
+                                        <h3 class="font-bold">Manufacture of Flexible Packaging</h3>
+                                   </div>
+                              </a>
+                         </div>
+                         <div class="swiper-slide">
+                              <a href="" class="bg-white rounded-lg border border-gray-200 drop-shadow-md h-full hover:drop-shadow-xl x-animation">
+                                   <img src="assets/img/blog.jpg" alt="item image" class="rounded-lg rounded-b-none">
+                                   <div class="p-5">
+                                        <p class="text-sm">Sept 7, 2024 - By Ian M</p>
+                                        <h3 class="font-bold">Manufacture of Flexible Packaging</h3>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+               </div>
+               <button class="blogSlider-next absolute top-1/2 -translate-y-1/2 -right-5 w-12 h-12 rounded-full drop-shadow-md bg-white z-[999]"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+     </section>
+     <!-- BANNER -->
+     <section class="bg-white mt-6">
+          <div class="x-container pt-0">
+               <div class="flex flex-wrap">
+                    <p class="w-1/4 flex items-center gap-3 justify-center font-bold py-6 border-r-2 border-gray-800/5">
+                         <span class="text-3xl"><i class="fa-solid fa-truck-fast"></i></span>
+                         Fast Same-Day Shipping
+                    </p>
+                    <p class="w-1/4 flex items-center gap-3 justify-center font-bold py-6 border-r-2 border-gray-800/5">
+                         <span class="text-3xl"><i class="fa-solid fa-tag"></i></span>
+                         Low Price Guarantee
+                    </p>
+                    <p class="w-1/4 flex items-center gap-3 justify-center font-bold py-6 border-r-2 border-gray-800/5">
+                         <span class="text-3xl"><i class="fa-solid fa-rotate"></i></span>
+                         Easy Returns & Exchanges
+                    </p>
+                    <p class="w-1/4 flex items-center gap-3 justify-center font-bold py-6">
+                         <span class="text-3xl"><i class="fa-regular fa-thumbs-up"></i></span>
+                         100% Customer Satisfaction
+                    </p>
+               </div>
+          </div>
+     </section>
+     <!-- FOOTER -->
+     <footer class="bg-gray-700 text-white/50 text-sm">
+          <div class="x-container pt-0">
+               <div class="flex flex-wrap">
+                    <div class="w-1/4 border-r-2 border-gray-100/5 py-6">
+                         <a href=""><img src="assets/img/logo.png" alt=""></a>
+                         <ul class="py-3 space-y-2">
+                              <li>185 Commerce Center</li>
+                              <li>Greenville, SC 29615-5817</li>
+                              <li>Email: <a href="mailto:sales@interplas.com" class="hover:text-white x-animation">sales@interplas.com</a></li>
+                              <li>Phone: <a href="" class="hover:text-white x-animation">1-800-820-4722</a></li>
+                              <li>Hours: Mon-Fri, 8am-5pm EST</li>
+                         </ul>
+                         <ul class="flex flex-wrap gap-3 text-2xl">
+                              <li><a href="" class="hover:text-white x-animation"><i class="fa-brands fa-linkedin"></i></a></li>
+                              <li><a href="" class="hover:text-white x-animation"><i class="fa-brands fa-square-youtube"></i></a></li>
+                              <li><a href="" class="hover:text-white x-animation"><i class="fa-brands fa-square-twitter"></i></a></li>
+                              <li><a href="" class="hover:text-white x-animation"><i class="fa-brands fa-square-facebook"></i></a></li>
+                         </ul>
+                    </div>
+                    <div class="w-1/4 border-r-2 border-gray-100/5 py-6">
+                         <div class="w-fit mx-auto">
+                              <h2 class="text-white font-bold">Support</h2>
+                              <ul class="pt-5 space-y-2">
+                                   <li><a href="" class="hover:text-white x-animation">Track My Order</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Returns & Exchanges</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">My Account</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Help Center</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Artwork Services</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Contact Us</a></li>
+                              </ul>
+                         </div>
+                    </div>
+                    <div class="w-1/4 border-r-2 border-gray-100/5 py-6">
+                         <div class="w-fit mx-auto">
+                              <h2 class="text-white font-bold">Company</h2>
+                              <ul class="pt-5 space-y-2">
+                                   <li><a href="" class="hover:text-white x-animation">About Us</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Our Blog</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Sustainability</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Distributor Info</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">ISO 9001</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Privacy Policy</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Sitemap</a></li>
+                              </ul>
+                         </div>
+                    </div>
+                    <div class="w-1/4 py-6">
+                         <div class="w-fit mx-auto">
+                              <h2 class="text-white font-bold">Catalog</h2>
+                              <ul class="pt-5 space-y-2">
+                                   <li><a href="" class="hover:text-white x-animation">Interactive PDF Catalog</a></li>
+                                   <li><a href="" class="hover:text-white x-animation">Request a Physical Catalog</a></li>
+                              </ul>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class=" border-t-2 border-gray-100/5 text-xs">
+               <div class="x-container py-4">
+                    <div class="flex items-center justify-between flex-wrap">
+                         <p>© 2024 International Plastics Inc. All Rights Reserved</p>
+                         <ul class="flex items-center gap-4">
+                              <li><img src="assets/img/payment/payment-1.png" alt="payment way"></li>
+                              <li><img src="assets/img/payment/payment-2.png" alt="payment way"></li>
+                              <li><img src="assets/img/payment/payment-3.png" alt="payment way"></li>
+                              <li><img src="assets/img/payment/payment-4.png" alt="payment way"></li>
+                              <li><img src="assets/img/payment/payment-5.png" alt="payment way"></li>
+                              <li><img src="assets/img/payment/payment-6.png" alt="payment way"></li>
+                         </ul>
+                    </div>
+               </div>
+          </div>
+     </footer>
+
+     <!-- SWIPER JS LINKS -->
+     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+     <script>
+          var swiper = new Swiper(".heroSlider", {
+               slidesPerView: 1,
+               autoplay: true,
+               autoplaySpeed: 1500,
+               loop: true,
+               pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+               },
+               navigation: {
+                    nextEl: ".heroSlider-next",
+               },
+          })
+          var swiper = new Swiper(".partnerSlider", {
+               slidesPerView: 2,
+               spaceBetween: 16,
+               autoplay: true,
+               autoplaySpeed: 1500,
+               loop: true,
+               breakpoints: {
+                    600: {
+                         slidesPerView: 3
+                    },
+                    1024: {
+                         slidesPerView: 4
+                    },
+               },
+               navigation: {
+                    nextEl: ".partnerSlider-next",
+               },
+          })
+          var swiper = new Swiper(".blogSlider", {
+               slidesPerView: 2,
+               spaceBetween: 16,
+               autoplay: true,
+               autoplaySpeed: 1500,
+               loop: true,
+               breakpoints: {
+                    1024: {
+                         slidesPerView: 3
+                    },
+               },
+               navigation: {
+                    nextEl: ".blogSlider-next",
+               },
+          })
+     </script>
 </body>
+
 </html>
